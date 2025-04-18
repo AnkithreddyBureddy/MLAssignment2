@@ -1,0 +1,18 @@
+services:
+  wordpress:
+    build: .
+    ports:
+      - "8000:8000"
+    user: "1000:1000"
+    volumes:
+      - ../wp-content:/var/local/wordpress/wp-content
+    environment:
+      # OTel auto instrumentation config
+      # https://opentelemetry.io/docs/instrumentation/php/automatic/#installation
+      - OTEL_PHP_AUTOLOAD_ENABLED=true
+      - OTEL_SERVICE_NAME=ca.k3p.rhildred.INFO8985-observable-monolith
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
+      - OTEL_TRACES_EXPORTER=otlp
+      - OTEL_METRICS_EXPORTER=otlp
+      - OTEL_LOGS_EXPORTER=otlp
+      - WP_MEMORY_LIMIT=512M

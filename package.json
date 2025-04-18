@@ -1,0 +1,8 @@
+{
+    "devDependencies": {
+        "wp-pwa": "^0.1.24"
+    },
+    "scripts": {
+        "build": "wp-pwa build INFO8985-observable-monolith"
+    }
+}
